@@ -88,5 +88,8 @@
       }
     }
   },
-  "defaultProject": "tabmo-poke"
+  "defaultProject": "tabmo-poke",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
