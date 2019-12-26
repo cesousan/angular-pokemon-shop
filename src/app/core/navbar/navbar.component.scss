@@ -1,0 +1,12 @@
+.navbar__list {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar__list-item {
+  display: flex;
+  flex-basis: 10%;
+  ::ng-deep.mat-list-item-content {
+    justify-content: space-evenly;
+  }
+}

@@ -1,6 +1,6 @@
-import { arrayToEntities, entitiesToArray } from "src/app/utils";
-import { Pokemon } from "src/app/poke-shop/models";
-import { Actions, ActionsTypes } from "src/app/poke-shop/+state/actions";
+import { arrayToEntities, entitiesToArray } from "src/app/shared/utils";
+import { Pokemon } from "../../models";
+import { Actions, ActionsTypes } from "../actions";
 
 export interface State {
   pokemonEntities: { [id: string]: Pokemon };

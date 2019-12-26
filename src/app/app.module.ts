@@ -1,13 +1,27 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app-routing.module";
+import { CoreModule } from "./core/core.module";
 import { RootStateModule } from "./+state/root-state.module";
+import { HomeModule } from "./features/home/home.module";
+import { PokeShopModule } from "./features/poke-shop/poke-shop.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RootStateModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    RootStateModule,
+    CoreModule,
+    HomeModule,
+    PokeShopModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
