@@ -1,0 +1,9 @@
+.pokemon-list__container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pokemon-list__item {
+  flex-basis: 18%;
+  margin: 10px;
+}

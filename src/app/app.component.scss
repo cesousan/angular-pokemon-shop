@@ -1,29 +1,36 @@
-tabmo-root {
+// tabmo-root {
+//   height: 100%;
+//   width: 100%;
+
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-template-rows: 100px max-content 1fr max-content;
+//   grid-template-areas:
+//     "header"
+//     "navbar"
+//     "main"
+//     "footer";
+// }
+
+// tabmo-header {
+//   grid-area: header;
+// }
+
+// tabmo-navbar {
+//   grid-area: navbar;
+// }
+
+// router-outlet + * {
+//   grid-area: main;
+// }
+
+// tabmo-footer {
+//   grid-area: footer;
+// }
+
+.app__container {
   height: 100%;
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 100px max-content 1fr max-content;
-  grid-template-areas:
-    "header"
-    "navbar"
-    "main"
-    "footer";
-}
-
-tabmo-header {
-  grid-area: header;
-}
-
-tabmo-navbar {
-  grid-area: navbar;
-}
-
-router-outlet + * {
-  grid-area: main;
-}
-
-tabmo-footer {
-  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -1,13 +1,14 @@
 import { Store, select } from "@ngrx/store";
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
 import * as fromState from "../../+state";
 
 @Component({
   selector: "tabmo-pokemons",
   templateUrl: "./pokemons.component.html",
-  styleUrls: ["./pokemons.component.scss"]
+  styleUrls: ["./pokemons.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonsComponent implements OnInit {
   public pokemons$ = this.store$.pipe(select(fromState.selectPokemons));
@@ -16,6 +17,5 @@ export class PokemonsComponent implements OnInit {
 
   ngOnInit() {
     this.store$.dispatch(new fromState.LoadPokemons());
-    this.pokemons$.subscribe(console.log);
   }
 }

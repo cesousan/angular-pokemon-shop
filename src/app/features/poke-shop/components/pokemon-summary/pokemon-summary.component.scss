@@ -1,0 +1,28 @@
+.summary__container {
+  display: flex;
+  flex-direction: column;
+  animation: fadein 0.5s;
+}
+
+.line__container,
+.multi-line__container {
+  display: flex;
+  flex-direction: row;
+  animation: fadein 0.5s;
+}
+
+.line__display,
+.multi-line__display {
+  flex-basis: 50%;
+  margin-left: 10px;
+  font-weight: 550;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

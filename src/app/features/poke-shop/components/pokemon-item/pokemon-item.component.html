@@ -1,0 +1,31 @@
+<mat-card class="pokemon-card">
+  <mat-card-header>
+    <img
+      *ngIf="pokemon.imgURL; else noImg"
+      mat-card-avatar
+      src="{{ pokemon.imgURL }}"
+      alt="{{ pokemon.name }}"
+    />
+    <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
+    <mat-card-subtitle *ngIf="pokemon.speciesName">{{
+      pokemon.speciesName | titlecase
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="pokemon-card__content">
+    <tabmo-pokemon-summary
+      *ngIf="pokemonDetail"
+      [pokemonDetail]="pokemonDetail"
+    ></tabmo-pokemon-summary>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- [quantity]="pokemon.quantityInBasket" -->
+    <tabmo-shop-action-bar
+      (add)="addPokemon(pokemon.name)"
+      (remove)="removePokemon(pokemon.name)"
+    ></tabmo-shop-action-bar>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #noImg>
+  <div mat-card-avatar class="no-header-image"></div>
+</ng-template>

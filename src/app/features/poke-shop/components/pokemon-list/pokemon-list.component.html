@@ -1,0 +1,17 @@
+<div
+  @list
+  *ngIf="!!pokemons && !!pokemons.length; else noData"
+  class="pokemon-list__container"
+>
+  <ng-container *ngFor="let pokemon of pokemons; trackBy: trackByName">
+    <tabmo-pokemon-item
+      @item
+      class="pokemon-list__item"
+      [pokemon]="pokemon"
+    ></tabmo-pokemon-item>
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  No data available.
+</ng-template>

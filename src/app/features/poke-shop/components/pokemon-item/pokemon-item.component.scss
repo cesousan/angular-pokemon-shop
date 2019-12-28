@@ -1,0 +1,17 @@
+.pokemon-card {
+  animation: fadein 0.5s;
+}
+
+.no-header-image {
+  background-image: url("/assets/img/no_image.png");
+  background-size: cover;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

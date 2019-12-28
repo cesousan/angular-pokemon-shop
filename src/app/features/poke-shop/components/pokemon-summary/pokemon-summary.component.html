@@ -1,0 +1,84 @@
+<div *ngIf="!!pokemonDetail" class="summary__container">
+  <!-- <ng-container
+    *ngTemplateOutlet="
+      line;
+      context: { $implicit: pokemonDetail.speciesName, display: 'Species Name' }
+    "
+  ></ng-container> -->
+  <ng-container
+    *ngTemplateOutlet="
+      line;
+      context: { $implicit: pokemonDetail.baseXP, display: 'Base Experience' }
+    "
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      line;
+      context: { $implicit: pokemonDetail.height, display: 'Height' }
+    "
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      line;
+      context: { $implicit: pokemonDetail.weigth, display: 'Weight' }
+    "
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      multi;
+      context: { $implicit: pokemonDetail.formsNames, display: 'Forms Names' }
+    "
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      stats;
+      context: { $implicit: pokemonDetail.stats, display: 'Stats' }
+    "
+  ></ng-container>
+</div>
+
+<ng-template #line let-value let-display="display">
+  <div *ngIf="!!value" class="line__container">
+    <div *ngIf="!!display" class="line__display">{{ display }}</div>
+    <div class="line__value">{{ value | titlecase }}</div>
+  </div>
+</ng-template>
+
+<ng-template #multi let-values let-display="display">
+  <div *ngIf="!!values && !!values.length" class="multi-line__container">
+    <div *ngIf="!!display" class="multi-line__display">{{ display }}</div>
+    <div>
+      <ng-container *ngFor="let value of values">
+        <ng-container
+          *ngTemplateOutlet="line; context: { $implicit: value }"
+        ></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #stats let-values let-display="display">
+  <div *ngIf="!!value && !!value.length" class="multi-line__container">
+    <div *ngIf="!!display" class="multi-line__display">{{ display }}</div>
+    <ng-container *ngFor="let value of values">
+      <ng-container
+        *ngTemplateOutlet="
+          line;
+          context: { $implicit: value.name, display: 'Name' }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          line;
+          context: { $implicit: value.base, display: 'Base' }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          line;
+          context: { $implicit: value.effort, display: 'Effort' }
+        "
+      ></ng-container>
+    </ng-container>
+  </div>
+</ng-template>

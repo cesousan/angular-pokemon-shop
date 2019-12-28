@@ -1,1 +1,9 @@
-<p>pokemons works!</p>
+<div>
+  <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
+    <tabmo-pokemon-list [pokemons]="pokemons"></tabmo-pokemon-list>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

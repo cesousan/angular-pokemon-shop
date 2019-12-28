@@ -1,3 +1,10 @@
+export interface PokemonAPIResponsePayload {
+  count: number;
+  previous: string;
+  next: string;
+  results: Partial<PokemonAPI>[];
+}
+
 export interface PokemonAPI {
   id: number;
   name: string;
@@ -7,13 +14,13 @@ export interface PokemonAPI {
   order: number;
   weight: number;
   abilities: PokeAPIAbility[];
-  forms: PokeAPIForm[];
+  forms: NameUrlIdentifier[];
   game_indices: PokeAPIGameIndice[];
   held_items: PokeAPIHeldItem[];
   location_area_encounters: any[];
   moves: any[];
   species: NameUrlIdentifier;
-  sprites: { [k: string]: string };
+  sprites: { [k: string]: string } & { front_default: string };
   stats: PokeAPIStat[];
   types: PokeAPIType[];
 }
@@ -27,7 +34,7 @@ export interface PokeAPIAbility {
   };
 }
 
-export interface PokeAPIForm {
+export interface NameUrlIdentifier {
   name: string;
   url: string;
 }

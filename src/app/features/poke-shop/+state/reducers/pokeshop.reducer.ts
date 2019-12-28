@@ -16,29 +16,55 @@ export const initialState: State = {
 
 export function pokeShopReducer(state = initialState, action: Actions): State {
   switch (action.type) {
-    case ActionsTypes.LOAD_POKEMONS: {
+    //Sync cases
+    // ...
+
+    // Request cases
+    case ActionsTypes.LOAD_POKEMONS:
+    case ActionsTypes.LOAD_ONE_POKEMON: {
       return {
         ...state,
         error: null,
         isLoading: true
       };
     }
-    case ActionsTypes.LOAD_POKEMONS_SUCCESS: {
-      const { pokemons = [] } = action.payload;
-      return {
-        ...state,
-        pokemonEntities: arrayToEntities(pokemons),
-        error: null,
-        isLoading: false
-      };
-    }
-    case ActionsTypes.LOAD_POKEMONS_FAIL: {
+
+    // Error cases
+    case ActionsTypes.LOAD_POKEMONS_FAIL:
+    case ActionsTypes.LOAD_ONE_POKEMON_FAIL: {
       return {
         ...state,
         error: action.payload.error,
         isLoading: false
       };
     }
+
+    // Success cases
+    case ActionsTypes.LOAD_POKEMONS_SUCCESS: {
+      const { pokemons = [] } = action.payload;
+      return {
+        ...state,
+        // store pokemons by name because no id initially provided on load all.
+        pokemonEntities: arrayToEntities(pokemons, "name"),
+        error: null,
+        isLoading: false
+      };
+    }
+    case ActionsTypes.LOAD_ONE_POKEMON_SUCCESS: {
+      const { pokemon } = action.payload;
+      const pokemonEntities = {
+        ...state.pokemonEntities,
+        [pokemon.name]: pokemon
+      };
+      return {
+        ...state,
+        pokemonEntities,
+        error: null,
+        isLoading: false
+      };
+    }
+
+    // default case
     default: {
       return state;
     }

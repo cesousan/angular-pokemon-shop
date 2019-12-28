@@ -1,7 +1,10 @@
-<tabmo-header></tabmo-header>
+<div class="app__container">
+  <div>
+    <tabmo-header></tabmo-header>
 
-<tabmo-navbar [navList]="menuList$ | async"></tabmo-navbar>
+    <tabmo-navbar [navList]="menuList$ | async"></tabmo-navbar>
 
-<router-outlet></router-outlet>
-
-<tabmo-footer></tabmo-footer>
+    <router-outlet></router-outlet>
+  </div>
+  <tabmo-footer></tabmo-footer>
+</div>
