@@ -8,6 +8,8 @@
       @item
       class="pokemon-list__item"
       [pokemon]="pokemon"
+      (pokemonAdded)="addPokemon($event)"
+      (pokemonRemoved)="removePokemon($event)"
     ></tabmo-pokemon-item>
   </ng-container>
 </div>

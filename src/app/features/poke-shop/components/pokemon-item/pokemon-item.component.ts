@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter
+} from "@angular/core";
 
 import { Pokemon, PokemonDetail } from "../../models";
 import { numberToString } from "src/app/shared/utils";
@@ -13,8 +19,20 @@ export class PokemonItemComponent {
   @Input()
   public pokemon: Pokemon;
 
+  @Output()
+  pokemonAdded: EventEmitter<Pokemon> = new EventEmitter();
+  @Output()
+  pokemonRemoved: EventEmitter<Pokemon> = new EventEmitter();
+
   get pokemonDetail() {
     return !!this.pokemon && getPokemonDetail(this.pokemon);
+  }
+
+  addPokemon() {
+    this.pokemonAdded.emit(this.pokemon);
+  }
+  removePokemon() {
+    this.pokemonRemoved.emit(this.pokemon);
   }
 }
 

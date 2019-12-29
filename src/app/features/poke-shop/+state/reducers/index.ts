@@ -1,9 +1,10 @@
-import * as fromPokeShop from "./pokeshop.reducer";
 import {
   MemoizedSelector,
   createFeatureSelector,
   ActionReducerMap
 } from "@ngrx/store";
+
+import * as fromPokeShop from "./pokeshop.reducer";
 
 export const POKESHOP_FEATURE_KEY: string = "pokeshop";
 

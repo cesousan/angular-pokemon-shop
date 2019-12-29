@@ -1,4 +1,9 @@
-export interface Pokemon extends PokemonBase, Partial<PokemonDetail> {}
+import { BasketItem } from "src/app/core/model/products.model";
+
+export interface Pokemon
+  extends PokemonBase,
+    Partial<PokemonDetail>,
+    Partial<BasketItem> {}
 
 export interface PokemonBase {
   id: number;

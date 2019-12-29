@@ -1,3 +1,7 @@
-<button mat-button>ADD</button>
-<span>{{ quantity }}</span>
-<button mat-button>REMOVE</button>
+<div class="container">
+  <button mat-button (click)="onAdd()">ADD</button>
+  <span>{{ quantity }}</span>
+  <button mat-button (click)="onRemove()" disabled="quantity > 0">
+    REMOVE
+  </button>
+</div>

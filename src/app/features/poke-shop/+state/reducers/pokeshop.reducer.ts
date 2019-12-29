@@ -3,7 +3,7 @@ import { Pokemon } from "../../models";
 import { Actions, ActionsTypes } from "../actions";
 
 export interface State {
-  pokemonEntities: { [id: string]: Pokemon };
+  pokemonEntities: { [name: string]: Pokemon };
   isLoading: boolean;
   error: any; // TODO : type the errors;
 }
@@ -17,7 +17,6 @@ export const initialState: State = {
 export function pokeShopReducer(state = initialState, action: Actions): State {
   switch (action.type) {
     //Sync cases
-    // ...
 
     // Request cases
     case ActionsTypes.LOAD_POKEMONS:
