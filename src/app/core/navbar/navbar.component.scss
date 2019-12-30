@@ -1,12 +1,28 @@
+.navbar__container {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .navbar__list {
   display: flex;
+  flex-grow: 1;
   flex-direction: row;
 }
 
 .navbar__list-item {
   display: flex;
+  flex-grow: 1;
   flex-basis: 10%;
   ::ng-deep.mat-list-item-content {
     justify-content: space-evenly;
   }
+}
+
+.cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-basis: 20%;
 }

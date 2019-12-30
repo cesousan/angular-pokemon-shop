@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 
+import { NavItem } from '../model';
+
 @Component({
   selector: "tabmo-navbar",
   templateUrl: "./navbar.component.html",
@@ -8,10 +10,5 @@ import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 })
 export class NavbarComponent {
   @Input() navList: NavItem[];
-}
-
-export interface NavItem {
-  path: string;
-  icon?: string;
-  text?: string;
+  @Input() basketCount: number;
 }

@@ -1,7 +1,10 @@
+import { Store, select } from '@ngrx/store';
 import { of, Observable } from "rxjs";
 
 import { Component } from "@angular/core";
-import { NavItem } from "./core/navbar/navbar.component";
+
+import { NavItem } from 'src/app/core/model';
+import * as fromRootState from 'src/app/+state';
 
 @Component({
   selector: "tabmo-root",
@@ -9,11 +12,13 @@ import { NavItem } from "./core/navbar/navbar.component";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "tabmo pokemon app";
-
-  menuList$: Observable<NavItem[]> = of([
+  public title = "tabmo pokemon app";
+  public menuList$: Observable<NavItem[]> = of([
     { path: "home", icon: "home", text: "Home" },
     { path: "pokemons", icon: "pets", text: "Pokemons" },
-    { path: "orders", icon: "shopping_cart", text: "My Cart" }
   ]);
+  public basketCount$: Observable<number> = this.store.pipe(select(fromRootState.selectBasketCount));
+
+
+  constructor(private store: Store<fromRootState.State>) {}
 }

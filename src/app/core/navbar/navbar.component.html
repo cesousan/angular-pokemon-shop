@@ -1,19 +1,41 @@
-<mat-nav-list class="navbar__list" *ngIf="navList">
-  <a
-    mat-list-item
-    class="navbar__list-item"
-    *ngFor="let item of navList"
-    [routerLink]="item.path"
-    routerLinkActive="selected"
-  >
-    <ng-container *ngIf="item">
-      <div *ngIf="item.icon">
-        <mat-icon aria-hidden="false" aria-label="item.text">{{
-          item.icon
-        }}</mat-icon>
-      </div>
-      <div *ngIf="item.text">{{ item.text }}</div>
-    </ng-container>
-  </a>
-</mat-nav-list>
+<div class="navbar__container">
+  <div>
+    <mat-nav-list class="navbar__list" *ngIf="navList">
+      <a
+        mat-list-item
+        class="navbar__list-item"
+        *ngFor="let item of navList"
+        [routerLink]="item.path"
+        routerLinkActive="selected"
+      >
+        <ng-container *ngIf="item">
+          <div *ngIf="item.icon">
+            <mat-icon aria-hidden="false" aria-label="item.text">{{
+              item.icon
+            }}</mat-icon>
+          </div>
+          <div *ngIf="item.text">{{ item.text }}</div>
+        </ng-container>
+      </a>
+    </mat-nav-list>
+  </div>
+  <div>
+  <mat-nav-list class="navbar__list">
+      <a
+        mat-list-item
+        class="navbar__list-item"
+        [routerLink]="'orders'"
+        routerLinkActive="selected"
+      >
+        <div>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="cart"
+            matBadge="{{basketCount || 0}}">shopping_cart</mat-icon>
+        </div>
+        <div>My Cart</div>
+      </a>
+    </mat-nav-list>
+  </div>
+</div>
 <mat-divider></mat-divider>

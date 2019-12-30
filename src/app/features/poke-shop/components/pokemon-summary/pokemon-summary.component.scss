@@ -8,14 +8,18 @@
 .multi-line__container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   animation: fadein 0.5s;
 }
 
 .line__display,
 .multi-line__display {
-  flex-basis: 50%;
+  flex-basis: 65%;
   margin-left: 10px;
   font-weight: 550;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @keyframes fadein {

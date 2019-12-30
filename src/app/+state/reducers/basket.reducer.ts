@@ -10,6 +10,7 @@ export const initialState: State = {
 };
 
 export function basketReducer(state = initialState, action: Actions) {
+
   switch (action.type) {
     case ActionTypes.ADD_ITEM: {
       const { item } = action.payload;

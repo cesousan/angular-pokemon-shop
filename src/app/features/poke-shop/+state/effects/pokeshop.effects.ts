@@ -11,8 +11,12 @@ import { Effect, Actions, ofType } from "@ngrx/effects";
 
 import { Injectable } from "@angular/core";
 
+import * as rootActions from "src/app/+state/actions";
+
 import { PokemonService } from "../../services";
 import * as pokeShopActions from "../actions";
+import { buildItem } from 'src/app/shared/utils/basket-item';
+import { ProductsType } from 'src/app/core/model/products.model';
 
 @Injectable()
 export class PokeShopEffects {
@@ -59,4 +63,23 @@ export class PokeShopEffects {
       )
     )
   );
+
+  @Effect()
+  addPokemonToBasket$ = this.actions$.pipe(
+    ofType<pokeShopActions.AddPokemonToBasket>(pokeShopActions.ActionsTypes.ADD_POKEMON_TO_BASKET),
+    map(({payload}) => {
+      const { pokemon } = payload;
+      const item = buildItem(pokemon, ProductsType.POKEMON);
+      return new rootActions.AddItem({ item })
+    })
+  );
+  @Effect()
+  removePokemonFromBasket$ = this.actions$.pipe(
+    ofType<pokeShopActions.RemovePokemonFromBasket>(pokeShopActions.ActionsTypes.REMOVE_POKEMON_FROM_BASKET),
+    map(({payload}) => {
+      const { pokemon } = payload;
+      const item = buildItem(pokemon, ProductsType.POKEMON);
+      return new rootActions.RemoveItem({ item })
+    })
+  )
 }

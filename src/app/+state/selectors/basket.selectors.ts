@@ -1,10 +1,7 @@
 import { createSelector } from "@ngrx/store";
 import * as fromReducers from "../reducers";
 
-export const selectBasketState = createSelector(
-  fromReducers.reducers.basket,
-  state => state
-);
+export const selectBasketState = (state: fromReducers.State) => state.basket;
 
 export const selectBasketEntities = createSelector(
   selectBasketState,

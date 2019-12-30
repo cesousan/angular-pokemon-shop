@@ -1,10 +1,13 @@
 <div class="app__container">
-  <div>
+  <div class="header">
     <tabmo-header></tabmo-header>
 
-    <tabmo-navbar [navList]="menuList$ | async"></tabmo-navbar>
-
+    <tabmo-navbar [navList]="menuList$ | async" [basketCount]="basketCount$ | async"></tabmo-navbar>
+  </div>
+  <div class="content">
     <router-outlet></router-outlet>
   </div>
-  <tabmo-footer></tabmo-footer>
+  <div class="footer">
+    <tabmo-footer></tabmo-footer>
+  </div>
 </div>

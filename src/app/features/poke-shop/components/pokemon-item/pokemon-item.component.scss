@@ -1,10 +1,18 @@
 .pokemon-card {
   animation: fadein 0.5s;
+
+  &__pricetag {
+    flex: 1;
+  }
 }
 
 .no-header-image {
   background-image: url("/assets/img/no_image.png");
   background-size: cover;
+}
+
+mat-card.item-added {
+  background-color: rgba(38, 219, 38, 0.3);
 }
 
 @keyframes fadein {

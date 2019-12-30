@@ -1,9 +1,10 @@
 import { BasketItem } from "src/app/core/model/products.model";
 
+export interface PokemonItem extends Pokemon, Partial<BasketItem> {}
+
 export interface Pokemon
   extends PokemonBase,
-    Partial<PokemonDetail>,
-    Partial<BasketItem> {}
+    Partial<PokemonDetail> {}
 
 export interface PokemonBase {
   id: number;

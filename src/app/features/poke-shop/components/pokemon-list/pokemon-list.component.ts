@@ -5,7 +5,8 @@ import {
   Output,
   EventEmitter
 } from "@angular/core";
-import { Pokemon } from "../../models";
+
+import { PokemonItem } from "../../models";
 import { listAnimation } from "src/app/shared/animations/list-animations";
 
 @Component({
@@ -17,22 +18,22 @@ import { listAnimation } from "src/app/shared/animations/list-animations";
 })
 export class PokemonListComponent {
   @Input()
-  public pokemons: Pokemon[];
+  public pokemons: PokemonItem[];
 
   @Output()
-  pokemonAdded: EventEmitter<Pokemon> = new EventEmitter();
+  pokemonAdded: EventEmitter<PokemonItem> = new EventEmitter();
   @Output()
-  pokemonRemoved: EventEmitter<Pokemon> = new EventEmitter();
+  pokemonRemoved: EventEmitter<PokemonItem> = new EventEmitter();
 
-  addPokemon(pokemon: Pokemon) {
+  addPokemon(pokemon: PokemonItem) {
     this.pokemonAdded.emit(pokemon);
   }
 
-  removePokemon(pokemon: Pokemon) {
+  removePokemon(pokemon: PokemonItem) {
     this.pokemonRemoved.emit(pokemon);
   }
 
-  trackByName(index: number, pokemon: Pokemon) {
+  trackByName(index: number, pokemon: PokemonItem) {
     return pokemon.name || null;
   }
 }

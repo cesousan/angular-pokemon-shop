@@ -1,9 +1,10 @@
 import { createSelector } from "@ngrx/store";
 
+import { PokemonItem } from '../../models';
+import { BasketItem } from "src/app/core/model/products.model";
+
 import * as fromRootSelectors from "src/app/+state/selectors";
 import * as fromReducers from "../reducers";
-import { BasketItem } from "src/app/core/model/products.model";
-import { Pokemon } from "../../models";
 
 export const selectPokeShopState = createSelector(
   fromReducers.selectPokeShopFeatureState,
@@ -36,9 +37,9 @@ export const selectPokemonsWithQuantities = createSelector(
   (pokemons, basketEntities) =>
     pokemons.map(pokemon => {
       const pokemonInBasket =
-        basketEntities[pokemon.name] || ({} as BasketItem);
+        !!basketEntities && basketEntities[pokemon.name] || ({} as BasketItem);
       const { quantity = 0 } = pokemonInBasket;
-      return { ...pokemon, quantity };
+      return { ...pokemon, quantity } as PokemonItem;
     })
 );
 

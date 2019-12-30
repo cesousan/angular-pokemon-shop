@@ -6,8 +6,8 @@ import {
   EventEmitter
 } from "@angular/core";
 
-import { Pokemon, PokemonDetail } from "../../models";
 import { numberToString } from "src/app/shared/utils";
+import { PokemonDetail, PokemonItem } from "../../models";
 
 @Component({
   selector: "tabmo-pokemon-item",
@@ -17,12 +17,12 @@ import { numberToString } from "src/app/shared/utils";
 })
 export class PokemonItemComponent {
   @Input()
-  public pokemon: Pokemon;
+  public pokemon: PokemonItem;
 
   @Output()
-  pokemonAdded: EventEmitter<Pokemon> = new EventEmitter();
+  pokemonAdded: EventEmitter<PokemonItem> = new EventEmitter();
   @Output()
-  pokemonRemoved: EventEmitter<Pokemon> = new EventEmitter();
+  pokemonRemoved: EventEmitter<PokemonItem> = new EventEmitter();
 
   get pokemonDetail() {
     return !!this.pokemon && getPokemonDetail(this.pokemon);
@@ -36,7 +36,7 @@ export class PokemonItemComponent {
   }
 }
 
-function getPokemonDetail(pokemon: Pokemon = {} as Pokemon): PokemonDetail {
+function getPokemonDetail(pokemon: PokemonItem = {} as PokemonItem): PokemonDetail {
   if (!pokemon) {
     return null;
   }

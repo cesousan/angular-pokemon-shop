@@ -10,7 +10,7 @@ import {
   NameUrlIdentifier,
   PokeAPIStat
 } from "../../models/poke-api.model";
-import { getRandomPrice } from "src/app/shared/utils";
+import { getConstantPriceFromStr } from "src/app/shared/utils";
 
 @Injectable({
   providedIn: "root"
@@ -63,7 +63,7 @@ export function fromBackendModel(be: PokemonAPI): Pokemon {
     base_experience: baseXP = null,
     forms = []
   } = be;
-
+  const price = getConstantPriceFromStr(name);
   const speciesName = species.name || null;
   const imgURL = sprites["front_default"] || null;
   const stats = mapStats(_stats);
@@ -74,7 +74,7 @@ export function fromBackendModel(be: PokemonAPI): Pokemon {
     id,
     name,
     lastViewedAt: new Date(),
-    price: getRandomPrice(),
+    price,
     speciesName,
     imgURL,
     weight,

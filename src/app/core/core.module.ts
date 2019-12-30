@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MatListModule, MatIconModule } from "@angular/material";
+import { MatListModule, MatIconModule, MatCardModule, MatBadgeModule } from "@angular/material";
 
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { RouterModule } from "@angular/router";
 
-const MATERIAL_COMPONENTS = [MatListModule, MatIconModule];
+const MATERIAL_COMPONENTS = [MatListModule, MatIconModule, MatCardModule, MatBadgeModule];
 
 @NgModule({
   declarations: [FooterComponent, HeaderComponent, NavbarComponent],

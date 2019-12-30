@@ -1,11 +1,12 @@
-<div>
-  <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
-    <tabmo-pokemon-list
-      [pokemons]="pokemons"
-      (pokemonAdded)="addPokemon($event)"
-      (pokemonRemoved)="removePokemon($event)"
-    ></tabmo-pokemon-list>
-  </ng-container>
+<div class="pokemons-screen__container" >
+    <tabmo-pokemon-search (onSearch)="searchPokemon($event)"></tabmo-pokemon-search>
+    <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
+      <tabmo-pokemon-list
+        [pokemons]="pokemons"
+        (pokemonAdded)="addPokemon($event)"
+        (pokemonRemoved)="removePokemon($event)"
+      ></tabmo-pokemon-list>
+    </ng-container>
 </div>
 
 <ng-template #loading>
