@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 
-import { PokemonItem } from '../../models';
+import { PokemonItem } from "../../models";
 import { BasketItem } from "src/app/core/model/products.model";
 
 import * as fromRootSelectors from "src/app/+state/selectors";
@@ -31,20 +31,26 @@ export const selectPokemons = createSelector(
   fromReducers.getPokemons
 );
 
+export const selectPokemonsPagination = createSelector(
+  selectPokeShopState,
+  fromReducers.getPaginationInfo
+);
+
 export const selectPokemonsWithQuantities = createSelector(
   selectPokemons,
   fromRootSelectors.selectBasketEntities,
   (pokemons, basketEntities) =>
     pokemons.map(pokemon => {
       const pokemonInBasket =
-        !!basketEntities && basketEntities[pokemon.name] || ({} as BasketItem);
+        (!!basketEntities && basketEntities[pokemon.name]) ||
+        ({} as BasketItem);
       const { quantity = 0 } = pokemonInBasket;
       return { ...pokemon, quantity } as PokemonItem;
     })
 );
 
-export const selectPokemonById = (id: string) =>
+export const selectPokemonByName = (name: string) =>
   createSelector(
     selectPokemonEntities,
-    entities => (!!id && !!entities && entities[id]) || null
+    entities => (!!name && !!entities && entities[name]) || null
   ); // TODO : select by Router State

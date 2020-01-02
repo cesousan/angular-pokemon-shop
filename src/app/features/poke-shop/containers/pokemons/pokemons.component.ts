@@ -1,8 +1,19 @@
 import { Store, select } from "@ngrx/store";
-import { Observable, BehaviorSubject, combineLatest } from "rxjs";
-import { map, filter } from "rxjs/operators";
+import { Observable, BehaviorSubject, combineLatest, Subject } from "rxjs";
+import {
+  map,
+  tap,
+  distinctUntilChanged,
+  filter,
+  takeUntil
+} from "rxjs/operators";
 
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy
+} from "@angular/core";
 
 import { Pokemon, PokemonItem } from "../../models";
 
@@ -14,7 +25,8 @@ import * as fromState from "../../+state";
   styleUrls: ["./pokemons.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PokemonsComponent implements OnInit {
+export class PokemonsComponent implements OnInit, OnDestroy {
+  private destroy: Subject<void> = new Subject();
   private search: BehaviorSubject<string> = new BehaviorSubject(null);
   private search$ = this.search.asObservable();
 
@@ -27,10 +39,29 @@ export class PokemonsComponent implements OnInit {
     this.pokemonsInStore$
   ).pipe(map(([search, pokemons]) => filterPokemonsByName(pokemons, search)));
 
+  public pokemonPagination$: Observable<{
+    previous: string;
+    next: string;
+  }> = this.store$.pipe(select(fromState.selectPokemonsPagination));
+
   constructor(private store$: Store<fromState.State>) {}
 
   ngOnInit() {
     this.store$.dispatch(new fromState.LoadPokemons());
+    this.search$
+      .pipe(
+        filter(search => !!search),
+        distinctUntilChanged(),
+        tap(search =>
+          this.store$.dispatch(new fromState.LoadOnePokemon({ name: search }))
+        ),
+        takeUntil(this.destroy.asObservable())
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
   }
 
   addPokemon(pokemon: Pokemon) {
@@ -43,6 +74,10 @@ export class PokemonsComponent implements OnInit {
 
   searchPokemon(event) {
     this.search.next(event);
+  }
+
+  loadMorePokemons(url: string) {
+    this.store$.dispatch(new fromState.LoadPokemons({ directUrl: url }));
   }
 }
 

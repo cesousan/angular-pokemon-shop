@@ -1,5 +1,4 @@
-<mat-card class="pokemon-card"
-[class.item-added]="pokemon.quantity > 0">
+<mat-card class="pokemon-card" [class.item-added]="pokemon.quantity > 0">
   <mat-card-header>
     <img
       *ngIf="pokemon.imgURL; else noImg"
@@ -11,7 +10,10 @@
     <mat-card-subtitle *ngIf="pokemon.speciesName">{{
       pokemon.speciesName | titlecase
     }}</mat-card-subtitle>
-    <tabmo-pricetag class="pokemon-card__pricetag" [price]="pokemon.price"></tabmo-pricetag>
+    <tabmo-pricetag
+      class="pokemon-card__pricetag"
+      [price]="pokemon.price"
+    ></tabmo-pricetag>
   </mat-card-header>
   <mat-card-content class="pokemon-card__content">
     <tabmo-pokemon-summary

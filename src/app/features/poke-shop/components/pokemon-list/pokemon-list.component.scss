@@ -5,6 +5,7 @@
 
 .pokemon-list__item {
   flex-basis: 20%;
-  flex-grow:1;
+  flex-grow: 1;
   margin: 10px;
+  max-width: 300px;
 }

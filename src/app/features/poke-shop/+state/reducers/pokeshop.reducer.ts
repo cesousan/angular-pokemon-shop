@@ -4,12 +4,14 @@ import { Actions, ActionsTypes } from "../actions";
 
 export interface State {
   pokemonEntities: { [name: string]: Pokemon };
+  pagination: { previous: string; next: string };
   isLoading: boolean;
   error: any; // TODO : type the errors;
 }
 
 export const initialState: State = {
   pokemonEntities: {},
+  pagination: { previous: null, next: null },
   isLoading: false,
   error: null
 };
@@ -17,7 +19,13 @@ export const initialState: State = {
 export function pokeShopReducer(state = initialState, action: Actions): State {
   switch (action.type) {
     //Sync cases
-
+    case ActionsTypes.SET_PAGINATION_INFO: {
+      const { pagination } = action.payload;
+      return {
+        ...state,
+        pagination
+      };
+    }
     // Request cases
     case ActionsTypes.LOAD_POKEMONS:
     case ActionsTypes.LOAD_ONE_POKEMON: {
@@ -44,7 +52,10 @@ export function pokeShopReducer(state = initialState, action: Actions): State {
       return {
         ...state,
         // store pokemons by name because no id initially provided on load all.
-        pokemonEntities: arrayToEntities(pokemons, "name"),
+        pokemonEntities: {
+          ...state.pokemonEntities,
+          ...arrayToEntities(pokemons, "name")
+        },
         error: null,
         isLoading: false
       };
@@ -77,3 +88,4 @@ export const getIsLoading = (state: State) => state.isLoading;
 export const getPokemonEntities = (state: State) => state.pokemonEntities;
 export const getPokemons = (state: State) =>
   entitiesToArray(getPokemonEntities(state)); // TODO : keep order received by adding an ids collection to state;
+export const getPaginationInfo = (state: State) => state.pagination;

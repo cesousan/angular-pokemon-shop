@@ -1,5 +1,7 @@
 <form [formGroup]="searchForm">
-    <tabmo-search-input
-        formControlName="searchTerm"
-        [placeholder]="'Search for Pokemons...'"></tabmo-search-input>
+  <tabmo-search-input
+    formControlName="searchTerm"
+    [debounceSearchMs]="300"
+    [placeholder]="'Search for Pokemons...'"
+  ></tabmo-search-input>
 </form>

@@ -3,7 +3,7 @@ import { tap, map } from "rxjs/operators";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Pokemon, PokemonStat } from "../../models";
+import { Pokemon, PokemonStat, PaginatedPokemonsResponse } from "../../models";
 import {
   PokemonAPI,
   PokemonAPIResponsePayload,
@@ -20,30 +20,28 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  getPokemons(url = this.API_URL): Observable<Partial<Pokemon[]>> {
-    return this.http
-      .get<PokemonAPIResponsePayload>(url)
-      .pipe(map(({ results: pokemons }) => pokemons.map(fromBackendModel)));
+  getPokemons(url = this.API_URL): Observable<PaginatedPokemonsResponse> {
+    return this.http.get<PokemonAPIResponsePayload>(url).pipe(
+      map(response => {
+        const pokemons = response.results.map(fromBackendModel);
+        const { previous = null, next = null, count = 0 } = response;
+        return {
+          pokemons,
+          previous,
+          next,
+          count
+        };
+      })
+    );
   }
 
-  getPokemon(nameOrId: { name?: string; id?: number }): Observable<Pokemon> {
-    if (!nameOrId) {
+  getPokemonByName(name: string): Observable<Pokemon> {
+    if (!name || typeof name !== "string") {
       return EMPTY;
     }
-    const { name = null, id = null } = nameOrId;
-
-    const fetchBy =
-      !!id && typeof id === "number"
-        ? id
-        : !!name && typeof name === "string"
-        ? name
-        : null;
-
-    return !!fetchBy
-      ? this.http
-          .get<PokemonAPI>(`${this.API_URL}/${fetchBy}`)
-          .pipe(map(fromBackendModel))
-      : EMPTY;
+    return this.http
+      .get<PokemonAPI>(`${this.API_URL}/${name}`)
+      .pipe(map(fromBackendModel));
   }
 }
 

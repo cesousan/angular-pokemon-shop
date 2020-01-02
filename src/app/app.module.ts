@@ -9,6 +9,7 @@ import { CoreModule } from "./core/core.module";
 import { RootStateModule } from "./+state/root-state.module";
 import { HomeModule } from "./features/home/home.module";
 import { PokeShopModule } from "./features/poke-shop/poke-shop.module";
+import { PipesModule } from "./shared/pipes/pipes.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { PokeShopModule } from "./features/poke-shop/poke-shop.module";
     AppRoutingModule,
     RootStateModule,
     CoreModule,
+    PipesModule,
     HomeModule,
     PokeShopModule
   ],
