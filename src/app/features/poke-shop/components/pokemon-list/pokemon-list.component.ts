@@ -21,6 +21,8 @@ export class PokemonListComponent {
   public pokemons: PokemonItem[];
 
   @Output()
+  pokemonSelected: EventEmitter<string> = new EventEmitter();
+  @Output()
   pokemonAdded: EventEmitter<PokemonItem> = new EventEmitter();
   @Output()
   pokemonRemoved: EventEmitter<PokemonItem> = new EventEmitter();
@@ -31,6 +33,10 @@ export class PokemonListComponent {
 
   removePokemon(pokemon: PokemonItem) {
     this.pokemonRemoved.emit(pokemon);
+  }
+
+  selectPokemon(pokemonName: string) {
+    this.pokemonSelected.emit(pokemonName);
   }
 
   trackByName(index: number, pokemon: PokemonItem) {

@@ -11,7 +11,8 @@ export enum ActionsTypes {
   LOAD_ONE_POKEMON_FAIL = "[Pokemon API] Load Pokemon by name Fail",
   ADD_POKEMON_TO_BASKET = "[Pokemon Feature] Add Pokemon to basket",
   REMOVE_POKEMON_FROM_BASKET = "[Pokemon Feature] Remove Pokemon from basket",
-  SET_PAGINATION_INFO = "[Pokemon List] Set Pagination Info"
+  SET_PAGINATION_INFO = "[Pokemon List] Set Pagination Info",
+  SELECT_POKEMON = "[Pokemon List] Select One Pokemon"
 }
 
 export class LoadPokemons implements Action {
@@ -67,6 +68,11 @@ export class SetPaginationInfo implements Action {
   ) {}
 }
 
+export class SelectPokemon implements Action {
+  public readonly type = ActionsTypes.SELECT_POKEMON;
+  constructor(public payload: { name: string }) {}
+}
+
 export type Actions =
   | LoadPokemons
   | LoadPokemonsSuccess
@@ -76,4 +82,5 @@ export type Actions =
   | LoadOnePokemonFail
   | AddPokemonToBasket
   | RemovePokemonFromBasket
-  | SetPaginationInfo;
+  | SetPaginationInfo
+  | SelectPokemon;

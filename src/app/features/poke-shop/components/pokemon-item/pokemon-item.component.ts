@@ -20,6 +20,8 @@ export class PokemonItemComponent {
   public pokemon: PokemonItem;
 
   @Output()
+  pokemonSelected: EventEmitter<string> = new EventEmitter();
+  @Output()
   pokemonAdded: EventEmitter<PokemonItem> = new EventEmitter();
   @Output()
   pokemonRemoved: EventEmitter<PokemonItem> = new EventEmitter();
@@ -36,7 +38,9 @@ export class PokemonItemComponent {
   }
 }
 
-function getPokemonDetail(pokemon: PokemonItem = {} as PokemonItem): PokemonDetail {
+function getPokemonDetail(
+  pokemon: PokemonItem = {} as PokemonItem
+): PokemonDetail {
   if (!pokemon) {
     return null;
   }

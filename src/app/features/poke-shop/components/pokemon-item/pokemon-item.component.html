@@ -1,5 +1,5 @@
 <mat-card class="pokemon-card" [class.item-added]="pokemon.quantity > 0">
-  <mat-card-header>
+  <mat-card-header (click)="pokemonSelected.emit(pokemon.name)">
     <img
       *ngIf="pokemon.imgURL; else noImg"
       mat-card-avatar

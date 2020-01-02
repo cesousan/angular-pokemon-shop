@@ -76,8 +76,18 @@ export class PokemonsComponent implements OnInit, OnDestroy {
     this.search.next(event);
   }
 
-  loadMorePokemons(url: string) {
-    this.store$.dispatch(new fromState.LoadPokemons({ directUrl: url }));
+  loadMorePokemons(paginationInfo: { next: string; previous: string }) {
+    if (!!paginationInfo && !!paginationInfo.next) {
+      this.store$.dispatch(
+        new fromState.LoadPokemons({ directUrl: paginationInfo.next })
+      );
+    }
+  }
+
+  selectPokemon(name: string) {
+    if (!!name) {
+      this.store$.dispatch(new fromState.SelectPokemon({ name }));
+    }
   }
 }
 

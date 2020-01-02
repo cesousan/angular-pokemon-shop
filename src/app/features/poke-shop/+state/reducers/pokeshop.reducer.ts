@@ -26,6 +26,10 @@ export function pokeShopReducer(state = initialState, action: Actions): State {
         pagination
       };
     }
+    case ActionsTypes.SELECT_POKEMON: {
+      // navigation handled in effects.
+      return state;
+    }
     // Request cases
     case ActionsTypes.LOAD_POKEMONS:
     case ActionsTypes.LOAD_ONE_POKEMON: {
@@ -73,7 +77,6 @@ export function pokeShopReducer(state = initialState, action: Actions): State {
         isLoading: false
       };
     }
-
     // default case
     default: {
       return state;

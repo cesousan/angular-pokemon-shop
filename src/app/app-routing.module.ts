@@ -6,7 +6,7 @@ import { HomeComponent } from "./features/home/home.component";
 export const routes: Routes = [
   { path: "home", component: HomeComponent },
   {
-    path: "pokemons",
+    path: "pokemon",
     loadChildren: () =>
       import("./features/poke-shop/poke-shop.module").then(
         mod => mod.PokeShopModule

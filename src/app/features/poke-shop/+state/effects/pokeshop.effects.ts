@@ -123,6 +123,17 @@ export class PokeShopEffects {
       return new rootActions.RemoveItem({ item });
     })
   );
+
+  @Effect()
+  navigateOnSelectPokemon$ = this.actions$.pipe(
+    ofType<fromActions.SelectPokemon>(fromActions.ActionsTypes.SELECT_POKEMON),
+    map(({ payload }) => {
+      const { name: pokemonName } = payload;
+      return new rootActions.Go({
+        path: ["/pokemon", pokemonName]
+      });
+    })
+  );
 }
 
 export function isInStoreNotExpired(

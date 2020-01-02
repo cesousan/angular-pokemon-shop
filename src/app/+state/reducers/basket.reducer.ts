@@ -1,5 +1,5 @@
 import { BasketItem } from "src/app/core/model/products.model";
-import { Actions, ActionTypes } from "../actions";
+import { Actions, ActionTypes } from "../actions/basket.actions";
 import { entitiesToArray } from "src/app/shared/utils";
 
 export interface State {
@@ -10,7 +10,6 @@ export const initialState: State = {
 };
 
 export function basketReducer(state = initialState, action: Actions) {
-
   switch (action.type) {
     case ActionTypes.ADD_ITEM: {
       const { item } = action.payload;

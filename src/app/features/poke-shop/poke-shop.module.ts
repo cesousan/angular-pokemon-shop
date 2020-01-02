@@ -14,13 +14,15 @@ import * as fromState from "./+state";
 import * as fromServices from "./services";
 import * as fromComponents from "./components";
 import * as fromContainers from "./containers";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
+import { InfiniteScrollModule } from "src/app/shared/components/infinite-scroll/infinite-scroll.module";
 
 const MATERIAL_COMPONENTS = [MatCardModule, MatDividerModule];
 const CUSTOM_COMPONENTS = [
   ShopActionBarModule,
   PricetagModule,
-  SearchInputModule
+  SearchInputModule,
+  InfiniteScrollModule
 ];
 
 @NgModule({

@@ -965,6 +965,10 @@
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-8.6.0.tgz#63e7875d0e83e552249b8b75bb9b6aba248cae2a"
 
+"@ngrx/router-store@^8.6.0":
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-8.6.0.tgz#3bda275722e476e8604fd57af81f37687662d673"
+
 "@ngrx/schematics@^8.6.0":
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-8.6.0.tgz#5387c0abc438768e4cb56c0b617082e0db2f00d7"

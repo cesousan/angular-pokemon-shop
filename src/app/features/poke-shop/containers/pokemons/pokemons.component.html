@@ -3,19 +3,23 @@
     (onSearch)="searchPokemon($event)"
   ></tabmo-pokemon-search>
   <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
-    <tabmo-pokemon-list
-      [pokemons]="pokemons"
-      (pokemonAdded)="addPokemon($event)"
-      (pokemonRemoved)="removePokemon($event)"
-    ></tabmo-pokemon-list>
-  </ng-container>
-  <ng-container *ngIf="pokemonPagination$ | async as pagination">
-    <button mat-button (click)="loadMorePokemons(pagination.next)">
-      LOAD MORE
-    </button>
+    <ng-container *ngIf="pokemonPagination$ | async as pagination">
+      <tabmo-infinite-scroll
+        class="scrollable-container"
+        (scrolled)="loadMorePokemons(pagination)"
+      >
+        <tabmo-pokemon-list
+          [pokemons]="pokemons"
+          (pokemonSelected)="selectPokemon($event)"
+          (pokemonAdded)="addPokemon($event)"
+          (pokemonRemoved)="removePokemon($event)"
+        ></tabmo-pokemon-list>
+      </tabmo-infinite-scroll>
+    </ng-container>
   </ng-container>
 </div>
 
 <ng-template #loading>
   Loading...
+  <!-- TODO: Replace w/ spinner -->
 </ng-template>

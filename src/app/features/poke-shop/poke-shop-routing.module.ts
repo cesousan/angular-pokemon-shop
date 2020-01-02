@@ -4,7 +4,7 @@ import { PokemonsComponent, PokemonDetailComponent } from "./containers";
 
 export const routes: Routes = [
   { path: "", component: PokemonsComponent },
-  { path: ":id", component: PokemonDetailComponent }
+  { path: ":name", component: PokemonDetailComponent }
 ];
 
 @NgModule({
