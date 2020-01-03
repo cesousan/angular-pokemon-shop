@@ -85,7 +85,6 @@ export function pokeShopReducer(state = initialState, action: Actions): State {
 }
 
 // getters
-
 export const getError = (state: State) => state.error;
 export const getIsLoading = (state: State) => state.isLoading;
 export const getPokemonEntities = (state: State) => state.pokemonEntities;

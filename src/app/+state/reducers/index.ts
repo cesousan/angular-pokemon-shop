@@ -15,6 +15,7 @@ export interface RouterStateUrl {
   url: string;
   queryParams: Params;
   params: Params;
+  data?: any;
 }
 
 export interface State {
@@ -34,14 +35,15 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-    const { url } = routerState;
+    let { url } = routerState;
+    url = !!url ? url : "/"; // Default value added to fix ngrx bug. TODO: remove
+
     const { queryParams } = routerState.root;
     let state: ActivatedRouteSnapshot = routerState.root;
     while (state.firstChild) {
       state = state.firstChild;
     }
-    const { params } = state;
-
-    return { url, queryParams, params };
+    const { params, data } = state;
+    return { url, queryParams, params, data };
   }
 }

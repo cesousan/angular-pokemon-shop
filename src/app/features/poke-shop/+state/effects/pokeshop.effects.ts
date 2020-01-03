@@ -7,7 +7,9 @@ import {
   catchError,
   mergeMap,
   filter,
-  withLatestFrom
+  withLatestFrom,
+  exhaustMap,
+  tap
 } from "rxjs/operators";
 
 import { Injectable } from "@angular/core";
@@ -34,7 +36,7 @@ export class PokeShopEffects {
   @Effect()
   loadPokemonsEffect$ = this.actions$.pipe(
     ofType<fromActions.LoadPokemons>(fromActions.ActionsTypes.LOAD_POKEMONS),
-    switchMap(({ payload = {} as any }) =>
+    exhaustMap(({ payload = {} as any }) =>
       this.pokemon.getPokemons(payload.directUrl).pipe(
         map(
           ({ pokemons, previous, next, count }) =>

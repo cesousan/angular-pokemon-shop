@@ -53,10 +53,9 @@ export class InfiniteScrollComponent
 
   private isHostScrollable() {
     const style = window.getComputedStyle(this.element);
-    const scrollable =
+    return (
       style.getPropertyValue("overflow") === "auto" ||
-      style.getPropertyValue("overflow-y") === "scroll";
-    console.log(scrollable);
-    return scrollable;
+      style.getPropertyValue("overflow-y") === "scroll"
+    );
   }
 }

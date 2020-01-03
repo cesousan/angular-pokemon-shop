@@ -28,7 +28,7 @@ import * as fromEffects from "./effects";
     EffectsModule.forRoot(fromEffects.effects),
     !environment.production
       ? StoreDevtoolsModule.instrument({
-          maxAge: 30
+          maxAge: 80
         })
       : []
   ],

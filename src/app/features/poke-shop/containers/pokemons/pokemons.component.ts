@@ -47,7 +47,6 @@ export class PokemonsComponent implements OnInit, OnDestroy {
   constructor(private store$: Store<fromState.State>) {}
 
   ngOnInit() {
-    this.store$.dispatch(new fromState.LoadPokemons());
     this.search$
       .pipe(
         filter(search => !!search),
