@@ -33,7 +33,11 @@ export const routes: Routes = [
     component: PokemonsComponent,
     canActivate: [fromGuards.PokemonsGuard]
   },
-  { path: ":name", component: PokemonDetailComponent }
+  {
+    path: ":name",
+    component: PokemonDetailComponent,
+    canActivate: [fromGuards.PokemonDetailGuard]
+  }
 ];
 
 @NgModule({

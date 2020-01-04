@@ -1,14 +1,10 @@
+@import "src/variables.scss";
+
 .pokemon-card {
   animation: fadein 0.5s;
-  transition: all 0.2s ease-in-out;
 
   &__pricetag {
     flex: 1;
-  }
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    transform: scale(1.02);
   }
 }
 
@@ -18,7 +14,7 @@
 }
 
 mat-card.item-added {
-  background-color: rgba(38, 219, 38, 0.3);
+  background-color: $primary;
 }
 
 .pokemon-card__content,

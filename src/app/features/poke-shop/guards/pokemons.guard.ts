@@ -6,7 +6,6 @@ import {
   take,
   catchError,
   map,
-  switchMap,
   switchMapTo
 } from "rxjs/operators";
 
@@ -17,8 +16,6 @@ import * as fromStore from "../+state";
 
 @Injectable()
 export class PokemonsGuard implements CanActivate {
-  private tries: number = 0;
-
   constructor(private store$: Store<fromStore.State>) {}
 
   canActivate(): Observable<boolean> {
@@ -36,7 +33,10 @@ export class PokemonsGuard implements CanActivate {
       filter(([, loading]) => !loading),
       map(
         ([pokemons]) =>
-          !!pokemons && Array.isArray(pokemons) && pokemons.length > 0
+          //TODO: fixme! 'pokemons.length >= 20' : design problem with pokemon-detail guard.
+          // when manual page reload... '20' is the minimal dataset length returned by
+          // loadPokemons call.
+          !!pokemons && Array.isArray(pokemons) && pokemons.length >= 20
       ),
       tap(loaded => {
         if (!loaded) {

@@ -4,7 +4,7 @@ import { RouterStateUrl } from "../reducers";
 
 export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>
->("routerReducer");
+>("router");
 
 export const getRouterUrlState = createSelector(
   getRouterState,

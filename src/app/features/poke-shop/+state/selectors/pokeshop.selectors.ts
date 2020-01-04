@@ -49,8 +49,15 @@ export const selectPokemonsWithQuantities = createSelector(
     })
 );
 
+export const selectPokemonFromUrl = createSelector(
+  selectPokemonEntities,
+  fromRootSelectors.getParams,
+  (entities, params) =>
+    !!entities && !!params && !!params["name"] && entities[params["name"]]
+);
+
 export const selectPokemonByName = (name: string) =>
   createSelector(
     selectPokemonEntities,
     entities => (!!name && !!entities && entities[name]) || null
-  ); // TODO : select by Router State
+  );
