@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { takeUntil, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 
 import {
   Component,
@@ -18,21 +18,34 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class PokemonSearchComponent {
   @Output()
   public onSearch: EventEmitter<string> = new EventEmitter();
+  @Output()
+  public onSelectedFiltered: EventEmitter<boolean> = new EventEmitter();
 
   private destroy: Subject<void> = new Subject();
 
   public searchForm = new FormGroup({
-    searchTerm: new FormControl("")
+    searchTerm: new FormControl(""),
+    filters: new FormGroup({
+      selected: new FormControl(false)
+    })
   });
 
   get searchTerm() {
     return this.searchForm.get("searchTerm");
   }
 
+  get selectedFiltered() {
+    return this.searchForm.get("filters.selected");
+  }
+
   ngOnInit() {
     this.searchTerm.valueChanges
       .pipe(takeUntil(this.destroy.asObservable()))
       .subscribe(search => this.onSearch.emit(search));
+
+    this.selectedFiltered.valueChanges
+      .pipe(takeUntil(this.destroy.asObservable()))
+      .subscribe(selected => this.onSelectedFiltered.emit(selected));
   }
 
   ngOnDestroy() {

@@ -1,0 +1,12 @@
+@import 'src/variables';
+
+.search-bar {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters {
+    color: $primary;
+}

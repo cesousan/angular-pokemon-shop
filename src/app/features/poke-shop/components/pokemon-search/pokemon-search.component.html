@@ -1,7 +1,14 @@
 <form [formGroup]="searchForm">
-  <tabmo-search-input
-    formControlName="searchTerm"
-    [debounceSearchMs]="300"
-    [placeholder]="'Search for Pokemons...'"
-  ></tabmo-search-input>
+  <div class="search-bar">
+    <tabmo-search-input
+      formControlName="searchTerm"
+      [debounceSearchMs]="300"
+      [placeholder]="'Search for Pokemons...'"
+    ></tabmo-search-input>
+    <div
+    formGroupName="filters"
+    class="filters">
+      <mat-slide-toggle formControlName="selected"><span>Show Selected Only</span></mat-slide-toggle>
+    </div>
+  </div>
 </form>

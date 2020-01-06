@@ -29,6 +29,8 @@ export class PokemonsComponent implements OnInit, OnDestroy {
   private destroy: Subject<void> = new Subject();
   private search: BehaviorSubject<string> = new BehaviorSubject(null);
   private search$ = this.search.asObservable();
+  private selectedFilter: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  private selectedFilter$ = this.selectedFilter.asObservable();
 
   private pokemonsInStore$ = this.store$.pipe(
     select(fromState.selectPokemonsWithQuantities)
@@ -36,8 +38,9 @@ export class PokemonsComponent implements OnInit, OnDestroy {
 
   public pokemons$: Observable<PokemonItem[]> = combineLatest(
     this.search$,
+    this.selectedFilter$,
     this.pokemonsInStore$
-  ).pipe(map(([search, pokemons]) => filterPokemonsByName(pokemons, search)));
+  ).pipe(map(([search, selected, pokemons]) => filterPokemonsByName(toggleSelectedPokemons(pokemons, selected), search)));
 
   public pokemonPagination$: Observable<{
     previous: string;
@@ -77,10 +80,14 @@ export class PokemonsComponent implements OnInit, OnDestroy {
 
   loadMorePokemons(paginationInfo: { next: string; previous: string }) {
     if (!!paginationInfo && !!paginationInfo.next) {
-      this.store$.dispatch(
+    this.store$.dispatch(
         new fromState.LoadPokemons({ directUrl: paginationInfo.next })
       );
     }
+  }
+
+  toggleSelectedFilter(toggle: boolean) {
+    this.selectedFilter.next(toggle);
   }
 
   selectPokemon(name: string) {
@@ -90,7 +97,10 @@ export class PokemonsComponent implements OnInit, OnDestroy {
   }
 }
 
-const filterPokemonsByName = (pokemons: Pokemon[], search: string) => {
+const toggleSelectedPokemons = (pokemons: PokemonItem[], selected: boolean) =>
+  !!selected ? pokemons.filter(pokemon => !!pokemon && !!pokemon.quantity && pokemon.quantity > 0) : pokemons;
+
+const filterPokemonsByName = (pokemons: PokemonItem[], search: string) => {
   const filterByName = () =>
     pokemons.filter(
       pokemon =>

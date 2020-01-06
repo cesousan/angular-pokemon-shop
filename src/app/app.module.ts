@@ -22,7 +22,9 @@ import { PipesModule } from "./shared/pipes/pipes.module";
     PipesModule,
     HomeModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: "Window", useValue: window } // TODO: FIXME make it non-browser resilient.
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

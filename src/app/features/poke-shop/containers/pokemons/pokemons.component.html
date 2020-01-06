@@ -2,11 +2,13 @@
   <div class="search-container">
     <tabmo-pokemon-search
       (onSearch)="searchPokemon($event)"
+      (onSelectedFiltered)="toggleSelectedFilter($event)"
     ></tabmo-pokemon-search>
   </div>
   <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
     <ng-container *ngIf="pokemonPagination$ | async as pagination">
       <tabmo-infinite-scroll
+        [dynamicHeight]="50"
         class="scrollable-container"
         (scrolled)="loadMorePokemons(pagination)"
       >
