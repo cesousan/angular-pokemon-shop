@@ -1,0 +1,17 @@
+<div class="chart-container">
+    <ng-container *ngIf="input$ | async as input;else loading">
+        <canvas baseChart
+        [height]="input.size.h"
+        [width]="input.size.w"
+        [datasets]="input.datasets"
+        [legend]="input.legend"
+        [labels]="input.labels"
+        [chartType]="input.chartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </ng-container>
+</div>
+
+<ng-template #loading>
+    Chart Data Loading...
+</ng-template>

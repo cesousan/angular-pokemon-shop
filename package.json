@@ -26,7 +26,8 @@
     "@ngrx/router-store": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
-    "d3": "^5.15.0",
+    "chart.js": "^2.9.3",
+    "ng2-charts": "^2.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -38,7 +39,6 @@
     "@angular/compiler-cli": "~8.2.12",
     "@angular/language-service": "~8.2.12",
     "@ngrx/schematics": "^8.6.0",
-    "@types/d3": "^5.7.2",
     "@types/jest": "^24.0.24",
     "@types/node": "~8.9.4",
     "jest": "^24.9.0",

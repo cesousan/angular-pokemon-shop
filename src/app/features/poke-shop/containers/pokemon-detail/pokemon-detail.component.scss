@@ -16,12 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 2vw;
-  font-family: "pokemonSolid";
-}
-
-.title {
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-family: "pokemonSolid";
 }
 
@@ -36,7 +31,7 @@
 .pokemon-detail__content {
   margin-top: 2vh;
   background-color: $primary;
-  padding: 2vw;
+  padding: 1vh;
   border-top: 0.25vh solid $accent;
   border-bottom: 0.25vh solid $accent;
   display: flex;
@@ -45,5 +40,12 @@
 }
 
 .pokemon-detail__content--summary {
+  display:block;
   width: 20vw;
+}
+
+.pokemon-detail__content--stats {
+    display:block;
+  // height: 20vw;
+  // width: 20vw;
 }

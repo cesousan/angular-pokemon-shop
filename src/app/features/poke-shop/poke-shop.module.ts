@@ -11,6 +11,7 @@ import { ShopActionBarModule } from "src/app/shared/components/shop-action-bar/s
 import { PricetagModule } from "src/app/shared/components/pricetag/pricetag.module";
 import { SearchInputModule } from "src/app/shared/components/search-input/search-input.module";
 import { InfiniteScrollModule } from "src/app/shared/components/infinite-scroll/infinite-scroll.module";
+import { ChartModule } from 'src/app/shared/components/chart/chart.module';
 import { DynamicHeightDirectiveModule } from 'src/app/shared/directives/dynamicHeight/dynamic-height-directive.module';
 import { PokemonsComponent, PokemonDetailComponent } from "./containers";
 
@@ -25,7 +26,8 @@ const CUSTOM_COMPONENTS = [
   ShopActionBarModule,
   PricetagModule,
   SearchInputModule,
-  InfiniteScrollModule
+  InfiniteScrollModule,
+  ChartModule
 ];
 const CUSTOM_DIRECTIVES = [
   DynamicHeightDirectiveModule
