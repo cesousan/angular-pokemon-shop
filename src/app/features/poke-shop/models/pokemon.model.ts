@@ -26,6 +26,7 @@ export interface PokemonDetail {
   height: number;
   weight: number;
   stats: PokemonStat[];
+  types: string[];
 }
 
 export interface PokemonStat {

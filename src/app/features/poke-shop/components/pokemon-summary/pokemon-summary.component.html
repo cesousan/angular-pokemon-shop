@@ -1,10 +1,10 @@
 <div *ngIf="!!pokemonDetail" class="summary__container">
-  <!-- <ng-container
+  <ng-container
     *ngTemplateOutlet="
       line;
       context: { $implicit: pokemonDetail.speciesName, display: 'Species Name' }
     "
-  ></ng-container> -->
+  ></ng-container>
   <ng-container
     *ngTemplateOutlet="
       line;
@@ -20,15 +20,15 @@
   <ng-container
     *ngTemplateOutlet="
       line;
-      context: { $implicit: pokemonDetail.weigth, display: 'Weight' }
+      context: { $implicit: pokemonDetail.weight, display: 'Weight' }
     "
   ></ng-container>
-  <!-- <ng-container
+  <ng-container
     *ngTemplateOutlet="
       multi;
-      context: { $implicit: pokemonDetail.formsNames, display: 'Forms Names' }
+      context: { $implicit: pokemonDetail.types, display: 'Types' }
     "
-  ></ng-container> -->
+  ></ng-container>
   <!-- <ng-container
     *ngTemplateOutlet="
       stats;

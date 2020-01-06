@@ -1,12 +1,21 @@
 <ng-container *ngIf="pokemon$ | async as pokemon; else loading">
   <div class="pokemon-detail__header">
-    <div class="title">{{ pokemon.name | titlecase }}</div>
-    <div>
-      <tabmo-pricetag [price]="pokemon.price"></tabmo-pricetag>
+    <div class="pokemon-img">
+      <img src="{{ pokemon.imgURL }}" alt="#{{ pokemon.name | titlecase }}" />
+    </div>
+    <div class="header-title">
+      <div class="title">{{ pokemon.name | titlecase }}</div>
+      <div>
+        <tabmo-pricetag [price]="pokemon.price"></tabmo-pricetag>
+      </div>
     </div>
   </div>
-  <img src="{{ pokemon.imgURL }}" />
-
+  <div class="pokemon-detail__content">
+    <tabmo-pokemon-summary
+      class="pokemon-detail__content--summary"
+      [pokemonDetail]="pokemonDetail$ | async"
+    ></tabmo-pokemon-summary>
+  </div>
   {{ pokemon | json }}
 </ng-container>
 

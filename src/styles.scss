@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./theme.scss";
+@import "./font.scss";
+@import "src/variables.scss";
+
+@font-face {
+  font-family: "pokemonSolid";
+  src: url($pokemon-solid-ttf-font-path);
+  font-weight: normal;
+  font-style: normal;
+}
 
 html,
 body {
@@ -9,4 +18,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow: auto;
+  background: radial-gradient(circle, $accent, $primary);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: rgba($accent, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #424242;
 }

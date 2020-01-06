@@ -1,7 +1,9 @@
 <div class="pokemons-screen__container">
-  <tabmo-pokemon-search
-    (onSearch)="searchPokemon($event)"
-  ></tabmo-pokemon-search>
+  <div class="search-container">
+    <tabmo-pokemon-search
+      (onSearch)="searchPokemon($event)"
+    ></tabmo-pokemon-search>
+  </div>
   <ng-container *ngIf="pokemons$ | async as pokemons; else loading">
     <ng-container *ngIf="pokemonPagination$ | async as pagination">
       <tabmo-infinite-scroll

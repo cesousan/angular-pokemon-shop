@@ -1,21 +1,34 @@
+@import "src/variables.scss";
+
 .summary__container {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding: 2vw;
+
+  border-top: solid 2px $accent;
+  border-bottom: solid 2px $accent;
+
+  border-top-left-radius: 10%;
+  border-bottom-right-radius: 5%;
+
   display: flex;
   flex-direction: column;
   animation: fadein 0.5s;
+  width: 100%;
 }
 
 .line__container,
 .multi-line__container {
+  padding: 0.5vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   animation: fadein 0.5s;
 }
 
 .line__display,
 .multi-line__display {
-  flex-basis: 65%;
-  margin-left: 10px;
+  flex-basis: 70%;
   font-weight: 550;
   white-space: nowrap;
   overflow: hidden;

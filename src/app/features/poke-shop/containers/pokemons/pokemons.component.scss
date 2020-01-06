@@ -1,4 +1,21 @@
+@import "src/variables.scss";
+
+.search-container {
+  margin: 30px;
+  padding: 10px;
+  border: solid 2px $accent;
+  border-top-left-radius: 25%;
+}
+
 .scrollable-container {
-  overflow-y: scroll;
+  margin: 30px;
+  padding: 10px;
+  overflow: auto;
   max-height: 800px;
+  border-left: solid 2px $accent;
+  border-top: solid 2px $accent;
+  border-bottom: solid 2px $accent;
+  border-bottom-left-radius: 15%;
+  border-top-right-radius: 0.5%;
+  border-bottom-right-radius: 0.5%;
 }

@@ -8,13 +8,19 @@
   }
 }
 
+.pokemon-name {
+  font-family: "pokemonSolid";
+  letter-spacing: 0.1vw;
+  font-size: 1.5vw;
+}
+
 .no-header-image {
   background-image: url("/assets/img/no_image.png");
   background-size: cover;
 }
 
 mat-card.item-added {
-  background-color: $primary;
+  background-color: rgba($primary, 1);
 }
 
 .pokemon-card__content,

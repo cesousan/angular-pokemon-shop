@@ -3,14 +3,13 @@ import { map } from "rxjs/operators";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Pokemon, PokemonStat, PaginatedPokemonsResponse } from "../../models";
+
+import { Pokemon, PaginatedPokemonsResponse } from "../../models";
 import {
   PokemonAPI,
-  PokemonAPIResponsePayload,
-  NameUrlIdentifier,
-  PokeAPIStat
+  PokemonAPIResponsePayload
 } from "../../models/poke-api.model";
-import { getConstantPriceFromStr } from "src/app/shared/utils";
+import { fromBackendModel } from "../../utils";
 
 @Injectable({
   providedIn: "root"
@@ -43,52 +42,4 @@ export class PokemonService {
       .get<PokemonAPI>(`${this.API_URL}/${name}`)
       .pipe(map(fromBackendModel));
   }
-}
-
-export function fromBackendModel(be: PokemonAPI): Pokemon {
-  if (!be || (!be.id && !be.name)) {
-    return null;
-  }
-
-  const {
-    id,
-    name,
-    species = {} as NameUrlIdentifier,
-    sprites = {},
-    stats: _stats = [],
-    weight = null,
-    height = null,
-    base_experience: baseXP = null,
-    forms = []
-  } = be;
-  const price = getConstantPriceFromStr(name);
-  const speciesName = species.name || null;
-  const imgURL = sprites["front_default"] || null;
-  const stats = mapStats(_stats);
-  const formsNames = forms
-    .filter(form => !!form && form.name)
-    .map(form => form.name);
-  return {
-    id,
-    name,
-    lastViewedAt: new Date(),
-    price,
-    speciesName,
-    imgURL,
-    weight,
-    height,
-    baseXP,
-    formsNames,
-    stats
-  };
-}
-
-export function mapStats(stats: PokeAPIStat[]): PokemonStat[] {
-  return !!stats && Array.isArray(stats)
-    ? stats.map(({ base_stat: base, stat, effort }) => ({
-        name: stat.name,
-        base,
-        effort
-      }))
-    : null;
 }

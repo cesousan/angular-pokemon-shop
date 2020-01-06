@@ -9,24 +9,19 @@
       src="{{ pokemon.imgURL }}"
       alt="{{ pokemon.name }}"
     />
-    <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
-    <mat-card-subtitle *ngIf="pokemon.speciesName">{{
-      pokemon.speciesName | titlecase
-    }}</mat-card-subtitle>
+    <mat-card-title class="pokemon-name">{{
+      pokemon.name | titlecase
+    }}</mat-card-title>
+    <mat-card-subtitle *ngIf="pokemon.types">
+      <span *ngFor="let type of pokemon.types; let last = last">
+        {{ type | titlecase }}<span *ngIf="!last">, </span>
+      </span>
+    </mat-card-subtitle>
     <tabmo-pricetag
       class="pokemon-card__pricetag"
       [price]="pokemon.price"
     ></tabmo-pricetag>
   </mat-card-header>
-  <mat-card-content
-    class="pokemon-card__content"
-    (click)="pokemonSelected.emit(pokemon.name)"
-  >
-    <tabmo-pokemon-summary
-      *ngIf="pokemonDetail"
-      [pokemonDetail]="pokemonDetail"
-    ></tabmo-pokemon-summary>
-  </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions>
     <tabmo-shop-action-bar

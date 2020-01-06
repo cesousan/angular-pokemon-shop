@@ -3,5 +3,7 @@ export function getRandomPrice(multiple = 100): number {
 }
 
 export function getConstantPriceFromStr(str: string): number {
-  return str.split('').reduce((acc, curr) => acc + curr.charCodeAt(0), 0)
+  const getConstantPrice = stringValue =>
+    stringValue.split("").reduce((acc, curr) => acc + curr.charCodeAt(0), 0);
+  return Math.floor(getConstantPrice(str) / 10);
 }
