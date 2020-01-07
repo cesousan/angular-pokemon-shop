@@ -1,4 +1,6 @@
 import { createSelector } from "@ngrx/store";
+
+import { entitiesToArray } from "src/app/shared/utils";
 import * as fromReducers from "../reducers";
 
 export const selectBasketState = (state: fromReducers.State) => state.basket;
@@ -8,6 +10,13 @@ export const selectBasketEntities = createSelector(
   state => state.basketEntities
 );
 
+export const selectBasketItems = createSelector(
+  selectBasketEntities,
+  entities =>
+    !!entities &&
+    entitiesToArray(entities)
+)
+
 export const selectBasketCount = createSelector(
   selectBasketEntities,
   entities =>
@@ -15,6 +24,13 @@ export const selectBasketCount = createSelector(
       .map(name => entities[name].quantity)
       .filter(count => !!count)
       .reduce((acc, curr) => acc + curr, 0)
+);
+
+export const selectBasketTotalPrice = createSelector(
+  selectBasketItems,
+  items => items
+      .filter(item => !!item && !!item.price && !!item.quantity)
+      .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
 );
 
 export const selectBasketEntity = (name: string) =>

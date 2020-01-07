@@ -5,5 +5,6 @@ export enum ProductsType {
 export interface BasketItem {
   itemName: string;
   productType: ProductsType;
+  price: number;
   quantity?: number;
 }

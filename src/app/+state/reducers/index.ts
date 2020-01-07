@@ -47,3 +47,5 @@ export class CustomSerializer
     return { url, queryParams, params, data };
   }
 }
+
+export * from './basket.reducer';  

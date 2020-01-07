@@ -21,8 +21,34 @@
 }
 
 .cart {
+  padding-right: 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  // flex-basis: 20%;
+}
+.basket-summary {
+  display: flex;
+}
+
+.summary-item {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  flex-basis: 20%;
+  justify-content: space-between;
+  justify-items: center;
+  &__name-quantity {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1vw;
+  }
+  &__name {
+    margin-right: 0.5vw;
+    font-weight: bold;
+  }
+}
+
+.basket-total {
+  font-family: 'PokemonSolid';
+  letter-spacing: 0.2vw;
+  font-size: 1vw;
 }

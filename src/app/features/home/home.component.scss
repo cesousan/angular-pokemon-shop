@@ -1,0 +1,16 @@
+@import 'src/variables';
+
+.home__container {
+    padding: 5vh
+}
+
+.title {
+    padding: 2vh;
+    width: 50%;
+    font-family: 'PokemonSolid';
+    letter-spacing: 0.5vw;
+    color: $accent;
+    border-bottom: solid 2px $accent;
+    border-bottom-right-radius: 15%;
+}
+

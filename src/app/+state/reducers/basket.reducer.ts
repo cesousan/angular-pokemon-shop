@@ -16,7 +16,7 @@ export function basketReducer(state = initialState, action: Actions) {
       const originalEntity = state.basketEntities[item.itemName];
       const entity = !!originalEntity
         ? originalEntity
-        : { itemName: item.itemName, quantity: 0 };
+        : { itemName: item.itemName, price: item.price, quantity: 0 };
       const quantity = !!entity.quantity ? entity.quantity + 1 : 1;
       return {
         ...state,
@@ -34,7 +34,7 @@ export function basketReducer(state = initialState, action: Actions) {
       const originalEntity = state.basketEntities[item.itemName];
       const entity = !!originalEntity
         ? originalEntity
-        : { itemName: item.itemName, quantity: 0 };
+        : { itemName: item.itemName, price: item.price, quantity: 0 };
       const quantity = !!entity.quantity ? entity.quantity - 1 : 0;
       return {
         ...state,
