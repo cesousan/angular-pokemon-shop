@@ -29,8 +29,8 @@ export const selectBasketCount = createSelector(
 export const selectBasketTotalPrice = createSelector(
   selectBasketItems,
   items => items
-      .filter(item => !!item && !!item.price && !!item.quantity)
-      .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+      .filter(item => !!item && !!item.itemPrice && !!item.quantity)
+      .reduce((acc, curr) => acc + curr.itemPrice * curr.quantity, 0)
 );
 
 export const selectBasketEntity = (name: string) =>

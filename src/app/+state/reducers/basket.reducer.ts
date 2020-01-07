@@ -14,9 +14,9 @@ export function basketReducer(state = initialState, action: Actions) {
     case ActionTypes.ADD_ITEM: {
       const { item } = action.payload;
       const originalEntity = state.basketEntities[item.itemName];
-      const entity = !!originalEntity
+      const entity: BasketItem = !!originalEntity
         ? originalEntity
-        : { itemName: item.itemName, price: item.price, quantity: 0 };
+        : { itemName: item.itemName, itemPrice: item.itemPrice, quantity: 0, productType: item.productType };
       const quantity = !!entity.quantity ? entity.quantity + 1 : 1;
       return {
         ...state,
@@ -32,9 +32,9 @@ export function basketReducer(state = initialState, action: Actions) {
     case ActionTypes.REMOVE_ITEM: {
       const { item } = action.payload;
       const originalEntity = state.basketEntities[item.itemName];
-      const entity = !!originalEntity
+      const entity: BasketItem = !!originalEntity
         ? originalEntity
-        : { itemName: item.itemName, price: item.price, quantity: 0 };
+        : { itemName: item.itemName, itemPrice: item.itemPrice, quantity: 0, productType: item.productType };
       const quantity = !!entity.quantity ? entity.quantity - 1 : 0;
       return {
         ...state,
