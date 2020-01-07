@@ -9,7 +9,7 @@ import {
   switchMapTo
 } from "rxjs/operators";
 
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { CanActivate } from "@angular/router";
 
 import * as fromRootState from "src/app/+state/selectors";
@@ -17,7 +17,7 @@ import * as fromStore from "../+state";
 
 @Injectable()
 export class PokemonDetailGuard implements CanActivate {
-  constructor(private store$: Store<fromStore.State>) {}
+  constructor(@Inject(Store) private store$: Store<fromStore.State>) {}
 
   canActivate(): Observable<boolean> {
     return this.checkStore().pipe(

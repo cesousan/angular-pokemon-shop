@@ -1,11 +1,15 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 import { PokemonsGuard } from './pokemons.guard';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('PokemonsGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PokemonsGuard]
+      providers: [
+        PokemonsGuard,
+        provideMockStore()
+    ]
     });
   });
 

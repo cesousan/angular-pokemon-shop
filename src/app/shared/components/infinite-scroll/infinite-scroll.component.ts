@@ -7,7 +7,8 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  Inject
 } from "@angular/core";
 
 @Component({
@@ -30,7 +31,7 @@ export class InfiniteScrollComponent
     return this.host.nativeElement;
   }
 
-  constructor(private host: ElementRef) {}
+  constructor(@Inject(ElementRef) private host: ElementRef) {}
 
   ngOnInit() {
     const options = {
@@ -51,6 +52,7 @@ export class InfiniteScrollComponent
     this.observer.disconnect();
   }
 
+  
   private isHostScrollable() {
     const style = window.getComputedStyle(this.element);
     return (

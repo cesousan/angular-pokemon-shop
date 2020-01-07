@@ -1,7 +1,7 @@
 import { Store, select } from "@ngrx/store";
 import { of, Observable } from "rxjs";
 
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 
 import { NavItem } from "src/app/core/model";
 import * as fromRootState from "src/app/+state";
@@ -21,5 +21,5 @@ export class AppComponent {
     select(fromRootState.selectBasketCount)
   );
 
-  constructor(private store: Store<fromRootState.State>) {}
+  constructor(@Inject(Store) private store: Store<fromRootState.State>) {}
 }

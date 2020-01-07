@@ -1,7 +1,7 @@
 import { Observable, EMPTY } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Pokemon, PaginatedPokemonsResponse } from "../../models";
@@ -17,7 +17,7 @@ import { fromBackendModel } from "../../utils";
 export class PokemonService {
   private readonly API_URL = "https://pokeapi.co/api/v2/pokemon";
 
-  constructor(private http: HttpClient) {}
+  constructor(@Inject(HttpClient) private http: HttpClient) {}
 
   getPokemons(url = this.API_URL): Observable<PaginatedPokemonsResponse> {
     return this.http.get<PokemonAPIResponsePayload>(url).pipe(

@@ -2,7 +2,7 @@ import { Store, select } from "@ngrx/store";
 import { Observable, BehaviorSubject } from "rxjs";
 import { map, pluck, filter, tap, withLatestFrom } from "rxjs/operators";
 
-import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit, Inject } from "@angular/core";
 
 import {
   ChartDataConfig,
@@ -56,7 +56,7 @@ export class PokemonDetailComponent implements OnInit {
     map(pokemonStatsToChartConfig("radar", this.chartOptions))
   );
 
-  constructor(private store$: Store<fromStore.State>) {}
+  constructor(@Inject(Store) private store$: Store<fromStore.State>) {}
 
   ngOnInit() {
     this.showPokemon.asObservable().pipe(

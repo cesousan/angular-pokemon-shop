@@ -1,4 +1,7 @@
+import { provideMockStore } from '@ngrx/store/testing';
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -8,7 +11,9 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      declarations: [ NavbarComponent ],
+      providers:[provideMockStore()],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

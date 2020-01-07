@@ -29,12 +29,6 @@
       context: { $implicit: pokemonDetail.types, display: 'Types' }
     "
   ></ng-container>
-  <!-- <ng-container
-    *ngTemplateOutlet="
-      stats;
-      context: { $implicit: pokemonDetail.stats, display: 'Stats' }
-    "
-  ></ng-container> -->
 </div>
 
 <ng-template #line let-value let-display="display">
@@ -56,29 +50,3 @@
     </div>
   </div>
 </ng-template>
-
-<!-- <ng-template #stats let-values let-display="display">
-  <div *ngIf="!!values && !!values.length" class="multi-line__container">
-    <div *ngIf="!!display" class="multi-line__display">{{ display }}</div>
-    <ng-container *ngFor="let value of values">
-      <ng-container
-        *ngTemplateOutlet="
-          line;
-          context: { $implicit: value.name, display: 'Name' }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
-          line;
-          context: { $implicit: value.base, display: 'Base' }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
-          line;
-          context: { $implicit: value.effort, display: 'Effort' }
-        "
-      ></ng-container>
-    </ng-container>
-  </div>
-</ng-template> -->

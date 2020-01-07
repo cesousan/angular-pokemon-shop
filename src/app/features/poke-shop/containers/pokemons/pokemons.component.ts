@@ -12,7 +12,8 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  OnDestroy
+  OnDestroy,
+  Inject
 } from "@angular/core";
 
 import { Pokemon, PokemonItem } from "../../models";
@@ -47,7 +48,7 @@ export class PokemonsComponent implements OnInit, OnDestroy {
     next: string;
   }> = this.store$.pipe(select(fromState.selectPokemonsPagination));
 
-  constructor(private store$: Store<fromState.State>) {}
+  constructor(@Inject(Store) private store$: Store<fromState.State>) {}
 
   ngOnInit() {
     this.search$

@@ -1,37 +1,24 @@
-<mat-card class="pokemon-card" [class.item-added]="pokemon.quantity > 0">
-  <mat-card-header
-    class="pokemon-card__header"
-    (click)="pokemonSelected.emit(pokemon.name)"
-  >
-    <img
-      *ngIf="pokemon.imgURL; else noImg"
-      mat-card-avatar
-      src="{{ pokemon.imgURL }}"
-      alt="{{ pokemon.name }}"
-    />
-    <mat-card-title class="pokemon-name">{{
+<ng-container *ngIf="pokemon">
+  <mat-card class="pokemon-card" [class.item-added]="pokemon.quantity > 0">
+    <mat-card-header class="pokemon-card__header" (click)="pokemonSelected.emit(pokemon.name)">
+      <img *ngIf="pokemon.imgURL; else noImg" mat-card-avatar src="{{ pokemon.imgURL }}" alt="{{ pokemon.name }}" />
+      <mat-card-title class="pokemon-name">{{
       pokemon.name | titlecase
     }}</mat-card-title>
-    <mat-card-subtitle *ngIf="pokemon.types">
-      <span *ngFor="let type of pokemon.types; let last = last">
-        {{ type | titlecase }}<span *ngIf="!last">, </span>
-      </span>
-    </mat-card-subtitle>
-    <tabmo-pricetag
-      class="pokemon-card__pricetag"
-      [price]="pokemon.price"
-    ></tabmo-pricetag>
-  </mat-card-header>
-  <mat-divider></mat-divider>
-  <mat-card-actions>
-    <tabmo-shop-action-bar
-      [quantity]="pokemon.quantity"
-      (add)="addPokemon()"
-      (remove)="removePokemon()"
-    ></tabmo-shop-action-bar>
-  </mat-card-actions>
-</mat-card>
-
+      <mat-card-subtitle *ngIf="pokemon.types">
+        <span *ngFor="let type of pokemon.types; let last = last">
+          {{ type | titlecase }}<span *ngIf="!last">, </span>
+        </span>
+      </mat-card-subtitle>
+      <tabmo-pricetag class="pokemon-card__pricetag" [price]="pokemon.price"></tabmo-pricetag>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <tabmo-shop-action-bar [quantity]="pokemon.quantity" (add)="addPokemon()" (remove)="removePokemon()">
+      </tabmo-shop-action-bar>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
 <ng-template #noImg>
   <div mat-card-avatar class="no-header-image"></div>
 </ng-template>

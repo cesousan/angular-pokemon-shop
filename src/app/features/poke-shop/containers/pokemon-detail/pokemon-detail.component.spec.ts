@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokemonDetailComponent } from './pokemon-detail.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('PokemonDetailComponent', () => {
   let component: PokemonDetailComponent;
@@ -8,7 +10,9 @@ describe('PokemonDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PokemonDetailComponent ]
+      declarations: [ PokemonDetailComponent ],
+      providers: [provideMockStore()],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

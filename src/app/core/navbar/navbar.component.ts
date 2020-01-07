@@ -1,7 +1,7 @@
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input, Inject } from "@angular/core";
 
 import * as fromAppStore from 'src/app/+state';
 
@@ -20,5 +20,5 @@ export class NavbarComponent {
   public totalPurchase$: Observable<number> = this.store$.pipe(select(fromAppStore.selectBasketTotalPrice));
   public basketItems$: Observable<BasketItem[]> = this.store$.pipe(select(fromAppStore.selectBasketItems))
 
-  constructor(private store$: Store<fromAppStore.State>) {}
+  constructor(@Inject(Store) private store$: Store<fromAppStore.State>) {}
 }
