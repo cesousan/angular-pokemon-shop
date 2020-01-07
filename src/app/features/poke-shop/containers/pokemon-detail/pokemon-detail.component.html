@@ -1,24 +1,27 @@
 <ng-container *ngIf="pokemon$ | async as pokemon; else loading">
   <div class="pokemon-detail__header">
-    <div class="pokemon-img">
-      <img src="{{ pokemon.imgURL }}" alt="#{{ pokemon.name | titlecase }}" />
-    </div>
-    <div class="header-title">
-      <div>{{ pokemon.name | titlecase }}</div>
-      <div>
-        <tabmo-pricetag [price]="pokemon.price"></tabmo-pricetag>
+    <button mat-fab aria-label="Previous Pokemon" (click)="showAdjacentPokemon('previous')">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div class="pokemon-detail__header-info">
+      <div class="pokemon-img">
+        <img src="{{ pokemon.imgURL }}" alt="#{{ pokemon.name | titlecase }}" />
+      </div>
+      <div class="header-title">
+        <div>{{ pokemon.name | titlecase }}</div>
+        <div>
+          <tabmo-pricetag [price]="pokemon.price"></tabmo-pricetag>
+        </div>
       </div>
     </div>
+    <button mat-fab aria-label="Next Pokemon" (click)="showAdjacentPokemon('next')">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
   <div class="pokemon-detail__content">
-    <!-- <tabmo-pokemon-summary
-      class="pokemon-detail__content--summary"
-      [pokemonDetail]="pokemonDetail$ | async"
-    ></tabmo-pokemon-summary> -->
-    
-    <tabmo-chart
-    class="pokemon-detail__content--stats"
-    [chartConfig$]="pokemonStatChartConfig$"></tabmo-chart>
+    <tabmo-pokemon-summary class="pokemon-detail__content--summary" [pokemonDetail]="pokemonDetail$ | async">
+    </tabmo-pokemon-summary>
+    <tabmo-chart class="pokemon-detail__content--stats" [chartConfig$]="pokemonStatChartConfig$"></tabmo-chart>
   </div>
 </ng-container>
 

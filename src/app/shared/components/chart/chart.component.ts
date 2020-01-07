@@ -50,7 +50,8 @@ const formatData = (chartDataConfig: ChartDataConfig = {} as ChartDataConfig): C
     header: label = null,
     type: chartType = 'radar',
     showLegend: legend = false,
-    size = { h:600, w: 600 }
+    size = { h:600, w: 600 },
+    options
   } = chartDataConfig;
   const filteredData = _data.filter(el => !!el && !!el.axis);
   const labels: string[] = filteredData.map(el => el.axis);
@@ -60,7 +61,8 @@ const formatData = (chartDataConfig: ChartDataConfig = {} as ChartDataConfig): C
     chartType,
     labels,
     legend,
-    size
+    size,
+    options
   };
 }
 
@@ -69,5 +71,6 @@ interface ChartDataInputs {
   labels: string[],
   chartType: ChartType,
   legend: boolean;
-  size: {h: number; w: number;}
+  size: {h: number; w: number;},
+  options: object
 }

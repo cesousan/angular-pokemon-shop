@@ -1,9 +1,12 @@
+import { ChartOptions } from "chart.js";
+
 export interface ChartDataConfig {
   data: ChartDataValue[];
   header: string;
   type: ChartType;
   showLegend: boolean;
-  size: {h: number; w: number;}
+  size: { h: number; w: number };
+  options: ChartOptions;
 }
 
 export interface ChartDataValue {
