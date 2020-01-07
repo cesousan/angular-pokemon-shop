@@ -2,17 +2,15 @@ import { Store, select } from "@ngrx/store";
 import { Effect, Actions, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import {
-  switchMap,
   map,
   catchError,
   mergeMap,
   filter,
   withLatestFrom,
   exhaustMap,
-  tap
 } from "rxjs/operators";
 
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 
 import * as rootActions from "src/app/+state/actions";
 
@@ -28,8 +26,11 @@ import * as fromSelectors from "../selectors";
 @Injectable()
 export class PokeShopEffects {
   constructor(
+    @Inject(Actions)
     private actions$: Actions,
+    @Inject(Store)
     private store$: Store<fromReducers.State>,
+    @Inject(PokemonService)
     private pokemon: PokemonService
   ) {}
 

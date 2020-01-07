@@ -41,6 +41,7 @@
     "@ngrx/schematics": "^8.6.0",
     "@types/jest": "^24.0.24",
     "@types/node": "~8.9.4",
+    "jasmine-marbles": "^0.6.0",
     "jest": "^24.9.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
