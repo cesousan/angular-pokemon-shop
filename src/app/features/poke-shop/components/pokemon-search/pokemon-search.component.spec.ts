@@ -1,30 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NO_ERRORS_SCHEMA, forwardRef } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatSlideToggleModule } from "@angular/material";
 
-import { PokemonSearchComponent } from './pokemon-search.component';
-import { SearchInputModule } from 'src/app/shared/components/search-input/search-input.module';
-import { SearchInputComponent } from 'src/app/shared/components/search-input/search-input.component';
+import { PokemonSearchComponent } from "./pokemon-search.component";
+import { SearchInputModule } from "src/app/shared/components/search-input/search-input.module";
 
-
-describe('PokemonSearchComponent', () => {
+describe("PokemonSearchComponent", () => {
   let component: PokemonSearchComponent;
   let fixture: ComponentFixture<PokemonSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PokemonSearchComponent ],
-      imports: [FormsModule, ReactiveFormsModule, SearchInputModule],
-      schemas:[NO_ERRORS_SCHEMA],
-      providers: [
-        { 
-          provide: NG_VALUE_ACCESSOR,
-          multi: true,
-          useExisting: forwardRef(() => SearchInputComponent),
-        }
-      ]
-    })
-    .compileComponents();
+      declarations: [PokemonSearchComponent],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SearchInputModule,
+        MatSlideToggleModule
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,7 +31,7 @@ describe('PokemonSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

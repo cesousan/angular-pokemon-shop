@@ -1,15 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NO_ERRORS_SCHEMA, ElementRef } from "@angular/core";
 
-import { InfiniteScrollComponent } from './infinite-scroll.component';
+import { InfiniteScrollComponent } from "./infinite-scroll.component";
 
-describe('InfiniteScrollComponent', () => {
+describe("InfiniteScrollComponent", () => {
   let component: InfiniteScrollComponent;
   let fixture: ComponentFixture<InfiniteScrollComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfiniteScrollComponent ],
+      declarations: [InfiniteScrollComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {
@@ -19,17 +19,28 @@ describe('InfiniteScrollComponent', () => {
           }
         },
         {
-          provide: window,
+          provide: "Window",
           useValue: {
             getComputedStyle: jest.fn(() => {
-              return {getPropertyValue: jest.fn()}
+              return { getPropertyValue: jest.fn() };
             })
           }
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
+
+  beforeEach(() => {
+    (<any>window).IntersectionObserver = class {
+      constructor() {}
+      observe() {
+        return null;
+      }
+      disconnect() {
+        return null;
+      }
+    };
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InfiniteScrollComponent);
@@ -37,7 +48,7 @@ describe('InfiniteScrollComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

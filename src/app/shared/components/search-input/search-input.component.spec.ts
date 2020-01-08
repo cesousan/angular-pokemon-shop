@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { SearchInputComponent } from "./search-input.component";
 import { CommonModule } from "@angular/common";
+import { MatFormFieldModule, MatInputModule } from "@angular/material";
 
 describe("SearchInputComponent", () => {
   let component: SearchInputComponent;
