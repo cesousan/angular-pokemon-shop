@@ -15,7 +15,8 @@ import {
   selector: "tabmo-infinite-scroll",
   template: `
     <ng-content></ng-content>
-    <div #anchor></div>
+    <!-- the 'dot' is a trick to make sure the entry is intersecting -->
+    <div #anchor>.</div>
   `,
   styleUrls: ["./infinite-scroll.component.scss"]
 })
@@ -31,7 +32,10 @@ export class InfiniteScrollComponent
     return this.host.nativeElement;
   }
 
-  constructor(@Inject(ElementRef) private host: ElementRef) {}
+  constructor(
+    @Inject(ElementRef) private host: ElementRef,
+    @Inject("Window") private window
+  ) {}
 
   ngOnInit() {
     const options = {
@@ -52,9 +56,8 @@ export class InfiniteScrollComponent
     this.observer.disconnect();
   }
 
-  
   private isHostScrollable() {
-    const style = window.getComputedStyle(this.element);
+    const style = this.window.getComputedStyle(this.element);
     return (
       style.getPropertyValue("overflow") === "auto" ||
       style.getPropertyValue("overflow-y") === "scroll"
